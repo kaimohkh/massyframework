@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain xmlns="http://www.massyframework.com/schema/assembly/domain"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.massyframework.com/schema/assembly
+		http://www.massyframework.com/schema/assembly/domain.xsd ">
+		
+	<name>com.massyframework</name>
+	<vendor>
+		<id>10000</id>
+		<name>广州市众禾信息科技有限公司</name>
+		<contact>www.massyframework.com</contact>
+	</vendor>
+	<publicKey>
+		MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIiMV6RqdNx/vgW8
+		4cZlNAFi+zbpQgyA+VBL6ldMGBwHzeiX3MTJnX8R9hcCngcjVd11DZMIde59uwSY
+		Dh2KTORYFvQh1eu2Evrx81d1jkkGF6CcdiqMw4GU3DwAS47TaOdp+mi7QE95wV4a
+		9E64wAslXLC4pvufTkbnaMw1WZzzAgMBAAECgYEAh4+ExvblM68iUIH3R0ZbvfCt
+		ZBNo/g7g9MWZTbd+y/03f+2cQEXEtU14mdmAV6fN7AD0S/9/TRjHnUTz5oHR2PoC
+		vkc9QjaQANOz02q8+b3FpzXLXjK4y9vV6Man7JhsMPKEPaouuMgDH51x353Suahs
+		0vtCjq5xOxOxZOxnpLECQQDjRaAeF/o+99wdXheafsIvN77FSc8htrfoG9J4QI9T
+		PcrEBpeZWr6LeuqG+Lf56DSTBdLDG//Bh7XfWzSLMNmJAkEAmc70Vvw2EAd0Gm6n
+		bNuEQ13xxyw3KfmOj+ZV/V8UmtCO93c8xVowckVuEDmoXbQD5vG0pB3/jphbIYo2
+		TXfvmwJAI/KZVuk3/cm6mTKOzTMLh+hrVk1MY+rAwAfWjIq5oNL/RW49gFYoGWvB
+		uMOSZgbiefbL1WySUYwjqkaE0xdQ8QJAZPTTqtjnf4P08HibSreXzEQ4s/xQxSt6
+		KPgOjz2+n5Ovk71fVUbKr+bkxJ+j5MWJHiie4m6SVP2qK4y18gl8awJBAOHo9sYy
+		Mey+6A36iOagEpBydyiQUY0r0CHWsdgf0zqyCRrTz7eYQU6Rh+owSeL6CWO1oU9h
+		BOTaduUknOXvoAI=
+	</publicKey>
+	<signedData>
+	    0476CE458E6531F6DC26DDB2584C8FCB6D270574DD27CC69CDF5E434ECF4BC8B80F021AB
+	    CD97AC6760F41AE7F70BB0F0A75976AB981CC927AF328ECAD682B9495875CA4FE7F3BF41
+	    2935721E6A3BC0A2B265587E596D387BF4CBD0FAF6027CC33EBD0AFA57DE613B254A4958
+	    245C88ABF133D725AD71F6A10122B6FB90C7881F
+	</signedData>
+</domain>

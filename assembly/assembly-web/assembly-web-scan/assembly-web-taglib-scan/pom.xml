@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>assembly-web-scan</artifactId>
+		<groupId>com.massyframework.assembly</groupId>
+		<version>2.3.0.9</version>
+	</parent>
+
+	<artifactId>assembly-web-taglib-scan</artifactId>
+	<name>assembly-web-taglib-scan</name>
+	<description>装配件jsp taglib扫描</description>
+	<url>http://www.massyframework.com</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-web-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>8.5.14</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>

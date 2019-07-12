@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ @Copyright: 2017 smarabbit studio. ~ ~ Licensed under the Confluent 
+	Community License; you may not use this file ~ except in compliance with 
+	the License. You may obtain a copy of the License at ~ ~ http://www.confluent.io/confluent-community-license 
+	~ ~ Unless required by applicable law or agreed to in writing, software ~ 
+	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
+	~ WARRANTIES OF ANY KIND, either express or implied. See the License for 
+	the ~ specific language governing permissions and limitations under the License. 
+	~ ~ @作 者： 黄开晖<117227773@qq.com> ~ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.massyframework.com/schema/assembly/domain"
+	xmlns="http://www.massyframework.com/schema/assembly/domain"
+	elementFormDefault="qualified">
+
+	<!-- 装配域元素 -->
+	<xs:element name="domain">
+		<xs:annotation>
+			<xs:appinfo>装配域</xs:appinfo>
+			<xs:documentation>开发商持有装配域的授权文件</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+
+				<!-- 名称 -->
+				<xs:element name="name" type="xs:string" minOccurs="1"
+					maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							装配域名称
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<!-- 开发商 -->
+				<xs:element name="vendor" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							装配件的开发商
+						</xs:documentation>
+					</xs:annotation>
+
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="id" type="xs:long" minOccurs="1"
+								maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										开发商的编号
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="name" type="xs:string" minOccurs="1"
+								maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										组织名称
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="contact" type="xs:string"
+								minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										联系方式
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+
+				<!-- 此装配域的数字证书公钥 -->
+				<xs:element name="publicKey" type="xs:string"
+					minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							用于验证签名的数字证书公钥, BASE64编码
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+
+				<xs:element name="signedData" type="xs:string"
+					minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							对以上信息的签名，BASE64编码
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

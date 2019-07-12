@@ -31,5 +31,3 @@ API定义放在独立Maven项目中，打包后生成独立的jar文件，而SPI
 ## 快速入门
 ## 使用指南
 ## 样例
-如果您使用tomcat，需要将jboss-modules-1.5.2.Final.jar靠拷贝到tomcat的lib目录下，否则运行时会出现javax.xml.parsers.FactoryConfigurationError错误。
-

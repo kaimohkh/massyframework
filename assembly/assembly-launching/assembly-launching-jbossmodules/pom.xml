@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>assembly-launching</artifactId>
+		<groupId>com.massyframework.assembly</groupId>
+		<version>2.3.0.9</version>
+	</parent>
+
+	<artifactId>assembly-launching-jbossmodules</artifactId>
+	<name>assembly-launching-jbossmodules</name>
+	<description>jbossmodule集成</description>
+	<url>http://www.massyframework.com</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jbossmodules.version>1.9.1.Final</jbossmodules.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.modules</groupId>
+			<artifactId>jboss-modules</artifactId>
+			<version>${jbossmodules.version}</version>
+		</dependency>
+	</dependencies>
+</project>

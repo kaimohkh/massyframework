@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>platform</artifactId>
+		<groupId>com.massyframework</groupId>
+		<version>2.3.0.9</version>
+	</parent>
+
+	<artifactId>platform-webapp</artifactId>
+	<packaging>war</packaging>
+
+	<name>platform-webapp Maven Webapp</name>
+	<description>web application</description>
+	<url>http://www.massyframework.com</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- 装配件api -->
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.logging</groupId>
+			<artifactId>logging-slf4j</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- 装配件内核 -->
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-runtime-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-web-runtime</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- 装配件 launching -->
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-launching-launcher</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-launching-servlet</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-launching-instrument</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- 运行内核 -->
+		<dependency>
+			<groupId>com.massyframework.assembly</groupId>
+			<artifactId>assembly-runtime-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>platform-webapp</finalName>
+	</build>
+</project>

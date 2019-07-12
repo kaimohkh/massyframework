@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @Copyright: 2017 smarabbit studio.
+  ~
+  ~ Licensed under the Confluent Community License; you may not use this file
+  ~ except in compliance with the License.  You may obtain a copy of the License at
+  ~
+  ~ http://www.confluent.io/confluent-community-license
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  ~ WARRANTIES OF ANY KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations under the License.
+  ~
+  ~ @作   者： 黄开晖<117227773@qq.com>
+  ~
+  -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.massyframework.com/schema/assembly"
+	xmlns="http://www.massyframework.com/schema/assembly"
+	elementFormDefault="qualified">
+
+	<!-- 装配件元素 -->
+	<xs:element name="assembly">
+		<xs:annotation>
+			<xs:appinfo>装配件</xs:appinfo>
+			<xs:documentation>一组服务的聚合体，多个聚合体共同构成系统所需功能</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+								
+				<!-- 名称 -->
+				<xs:element name="name" type="xs:string"
+					minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							装配件的友好名称
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+				<!-- 版本 -->
+				<xs:element name="version" type="xs:string"
+					minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							装配件的版本
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+				<!-- 说明 -->
+				<xs:element name="description" type="xs:string"
+					minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							装配件的能力说明，阐述装配件适用于何种业务场景，提供哪些服务能力等等
+						</xs:documentation>
+					</xs:annotation>
+					
+				</xs:element>
+				
+				<xs:element name="tags" type="xs:string" minOccurs="0" 
+					maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							标签
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+				<!-- 服务容器 -->
+				<xs:element name="container" 
+					minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							容器，指定加载装配件服务实例的容器
+						</xs:documentation>
+					</xs:annotation>
+					
+									
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string"
+								minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										容器名称
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="attachHandlers">								
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="class" type="xs:string" 
+											minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													附加的处理器类名，处理器必须实现AssemblyContextAware接口,在装配件进入工作状态
+													前后调用setAssemblyContext方法。
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- 初始化参数 -->
+				<xs:element name="init-params" type="parametersType"
+					minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+						初始化参数集
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+								
+				<!-- 依赖服务 -->
+				<xs:element name="dependency-service" minOccurs="0"
+					maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							装配件在进入工作状态前，必须被满足的依赖服务资源。
+						</xs:documentation>
+					</xs:annotation>
+
+					<xs:complexType>
+						<xs:sequence>
+							<!-- 服务类型 -->
+							<xs:element name="class" type="xs:string" minOccurs="1"
+								maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										依赖服务的类型
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+
+							<!-- 过滤字符串 -->
+							<xs:element name="filterString" type="xs:string"
+								minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										满足RFC 1960*based的过滤器,用于过滤筛选符合需要的依赖服务，使用LDAP过滤的样例如下：
+										<br>
+											"(name=default)"
+										</br>
+										<br>
+											"(!(alias=test))"
+										</br>
+										<br>
+											"(&amp; (name=user.datasource)(|(sn=Jensen)(cn=Babs J*)))"</br>
+										<br>
+											"(o=univ*of*mich*)"
+										</br>
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+
+						<!-- 编号 -->
+						<xs:attribute name="cName" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+									依赖服务注入到装配件容器的编号，如果容器是spring,编号对应的是spring的bean名称。如果容器是类，编号对应的就是字段名。
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+
+				<!-- 输出服务 -->
+				<xs:element name="export-service" minOccurs="0"
+					maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							装配件进入工作状态后，可向系统输出的服务资源
+						</xs:documentation>
+					</xs:annotation>
+
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="class" type="xs:string" minOccurs="1"
+								maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+										可输出的服务类型
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="properties" type="propertiesType"
+								minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										服务属性
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+
+						<!-- 编号 -->
+						<xs:attribute name="cName" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+									输出服务在装配件容器中的编号，如果容器是spring,编号就对应bean名称，如果容器是类，编号对应的是字段名。
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	
+	
+		
+	<!-- 参数类型 -->
+	<xs:complexType name="parametersType">
+		<xs:annotation>
+			<xs:documentation>
+				参数集类型
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="parameter">
+				<xs:annotation>
+					<xs:documentation>
+						以键值对组成的参数，键在参数集中必须唯一，不能重复
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="key" type="xs:string" />
+							<xs:attribute name="value" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="descriptors" minOccurs="0" maxOccurs="1">				
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="descriptor" type="parameterDescrptorType"
+							minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									初始化参数定义，说明特定初始化参数的定义，说明以及使用样例。
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>			
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+		
+	<!-- 属性集类型 -->
+	<xs:complexType name="propertiesType">
+		<xs:annotation>
+			<xs:documentation>
+				属性集类型
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="property">
+				<xs:annotation>
+					<xs:documentation>
+						以名称/数据对组成的属性，属性名在属性集中必须唯一，不能重复
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name" type="xs:string" />
+							<xs:attribute name="type" type="propertyTypeType" default="string" />
+							<xs:attribute name="value" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<!-- 一组处理器类型 -->
+	<xs:complexType name="parameterDescrptorType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" 
+				minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						初始化参数名称
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="key" type="xs:string" 
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						关键字，用于参数搜索时使用
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descrption" type="xs:string"
+				minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						参数的解释说明
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="example" type="xs:string"
+				minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						使用样例
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 属性类型 -->
+	<xs:simpleType name="propertyTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				属性类型
+			</xs:documentation>
+		</xs:annotation>
+		
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="string">
+				<xs:annotation>
+					<xs:documentation>
+					字符串
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="int">
+				<xs:annotation>
+					<xs:documentation>
+					整数
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="boolean">
+				<xs:annotation>
+					<xs:documentation>
+					布尔
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="short">
+				<xs:annotation>
+					<xs:documentation>
+					短整数
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="long">
+				<xs:annotation>
+					<xs:documentation>
+					长整数
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="float">
+				<xs:annotation>
+					<xs:documentation>
+					单精度
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="double">
+				<xs:annotation>
+					<xs:documentation>
+					双精度
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="char">
+				<xs:annotation>
+					<xs:documentation>
+					字符
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="byte">
+				<xs:annotation>
+					<xs:documentation>
+					字节
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

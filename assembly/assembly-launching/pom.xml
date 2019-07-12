@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>assembly</artifactId>
+    <groupId>com.massyframework.assembly</groupId>
+    <version>2.3.0.9</version>
+  </parent>
+  <artifactId>assembly-launching</artifactId>
+  <packaging>pom</packaging>
+  <name>assembly-launching</name>
+  <description>装配件启动器</description>
+  
+  <modules>
+  	<module>assembly-launching-launcher</module>
+	<module>assembly-launching-jbossmodules</module>
+    <module>assembly-launching-servlet</module>
+    <module>assembly-launching-instrument</module>
+    <module>assembly-launching-test</module>
+  </modules>
+</project>
